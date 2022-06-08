@@ -7,6 +7,7 @@ function Restaurantes() {
     const { ciudad } = useParams();
     const navigate = useNavigate();
     const [ todosRestaurantes, setTodosRestaurantes ] = useState(null);
+    const [ errorMessage, setErrorMessage ] = useState(null);
 
     useEffect(() => {
         getRestaurantes();
@@ -22,7 +23,11 @@ function Restaurantes() {
             setTodosRestaurantes(response.data)
 
         } catch (error) {
+          if (error.response.status === 400 || error.response.status === 401 ) {
+            setErrorMessage(error.response.data.errorMessage);
+          } else {
             navigate("/error")
+          }
         }
     }
 
@@ -31,13 +36,8 @@ function Restaurantes() {
     <div>
         <h1 style={{'margin-top': '15px', 'margin-bottom': '25px'}}> Restaurantes de {ciudad} </h1>
         { todosRestaurantes === null && <h3> ... Loading </h3>}
-
-        <div className="d-flex flex-wrap gap-1">
-
-
-
-
         
+        <div className="d-flex flex-wrap gap-1">        
         {
           todosRestaurantes !== null && todosRestaurantes.map((cadaRestaurante) => {
           return (
@@ -53,9 +53,10 @@ function Restaurantes() {
           )
         })
       }
-
+      { errorMessage !== null && <p> {errorMessage} </p> }
 
         </div>
+
     </div>
   )
 }

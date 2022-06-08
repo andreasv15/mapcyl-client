@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import AddRestaurante from "./pages/AddRestaurante";
 import EditarRestaurante from "./pages/EditarRestaurante";
 import NotFound from "./pages/NotFound";
+import IsAdmin from "./components/IsAdmin";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <Route path="/ciudades" element={<Ciudades />} />
         <Route path="/restaurantes/:ciudad" element={<Restaurantes />} />
         <Route path="/restaurantes/:id/details" element={<RestauranteDetails />} />
-        <Route path="/restaurantes/add-restaurante" element={<AddRestaurante />} />
+        <Route path="/restaurantes/add-restaurante" element={ <IsAdmin> <AddRestaurante /> </IsAdmin>} />
         <Route path="/restaurantes/:id/edit" element={<EditarRestaurante />} />
 
 

@@ -20,17 +20,17 @@ function AuthWrapper(props) {
            setIsLoggedIn(true);
            setUser(response.data);
            setIsLoading(false);
-        //    if (response.data.isAdmin === true) {
-        //         setUserAdmin(true);
-        //         console.log("Es admin")
-        //     } else {
-        //         setUserAdmin(false)
-        //     }
+           setUserAdmin(false);
+           if (response.data.isAdmin === true) {
+                setUserAdmin(true);
+                console.log("Es admin")
+            } 
         } catch (error) {
            console.log("AuthWrapper: El usuario no tiene token o el token no es valido")
            setIsLoggedIn(false);
            setUser(null);
            setIsLoading(false);
+           setUserAdmin(false);
         }
    }
 
@@ -60,6 +60,7 @@ function AuthWrapper(props) {
        isLoggedIn,
        user,
        authenticateUser,
+       userAdmin
     //    isAdmin
    }
 
