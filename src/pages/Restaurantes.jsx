@@ -33,29 +33,29 @@ function Restaurantes() {
 
 
   return (
-    <div>
-        <h1 style={{'margin-top': '15px', 'margin-bottom': '25px'}}> Restaurantes de {ciudad} </h1>
-        { todosRestaurantes === null && <h3> ... Loading </h3>}
+    <div style={{'paddingTop': '15px', 'paddingBottom': '25px'}}>
+        <h1 style={{'marginTop': '15px', 'marginBottom': '25px'}}> Restaurantes de {ciudad} </h1>
+        { todosRestaurantes === null && errorMessage === null && <h3> ... Loading </h3>}
         
-        <div className="d-flex flex-wrap gap-1">        
+        <div className="d-flex flex-wrap gap-4 justify-content-around">        
         {
           todosRestaurantes !== null && todosRestaurantes.map((cadaRestaurante) => {
-          return (
-            <div className="p-3 card" style={{width: 500 + 'px'}} key={cadaRestaurante._id}>
+            return (
+              <div className="p-3 card" style={{width: 500 + 'px', backgroundColor: "#FFE6BC"}} key={cadaRestaurante._id}>
 
-            <h3> {cadaRestaurante.nombre} </h3> 
-            
-              <img src={cadaRestaurante.imagen} alt="img" width="300px" className="d-block w-100" />
-
-              <br />
-                <Link to={`/restaurantes/${cadaRestaurante._id}/details`}> <button className='btn btn-primary'> ¡Ver más! </button> </Link>
-            </div>
-          )
-        })
-      }
-      { errorMessage !== null && <p> {errorMessage} </p> }
-
-        </div>
+              <h3 className="card-title"> {cadaRestaurante.nombre} </h3> 
+              
+                <img src={cadaRestaurante.imagen} alt="img" width="300px" className="card-img-top" />
+                <br />
+                  <Link to={`/restaurantes/${cadaRestaurante._id}/details`}> <button className='btn btn-primary'> ¡Ver más! </button> </Link>
+              </div>
+            )
+          })
+        }
+        
+          { errorMessage !== null && <h4> {errorMessage} </h4>}
+        
+      </div>
 
     </div>
   )

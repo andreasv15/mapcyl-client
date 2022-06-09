@@ -78,12 +78,14 @@ function EditarRestaurante() {
         <h1> Editar restaurante </h1>
 
         <form onSubmit={handleSubmit}>
-            <input type='text' name='nombreRestaurante' placeholder='Escribe el nombre del restaurante' onChange={handleNombreChange} value={nombre} />
+        <div className='d-flex flex-column align-items-center'>
+
+            <input type='text' className="form-control w-50 p-3" name='nombreRestaurante' placeholder='Escribe el nombre del restaurante' onChange={handleNombreChange} value={nombre} />
             <br />
-            <input type='text' name='direccionRestaurante' placeholder='Escribe la direccion del restaurante' onChange={handleDireccionChange} value={direccion} />
+            <input type='text' className="form-control w-50 p-3" name='direccionRestaurante' placeholder='Escribe la direccion del restaurante' onChange={handleDireccionChange} value={direccion} />
             <br />
 
-            <select name="ciudadRestaurante" onChange={handleCiudadChange} value={ciudad}>
+            <select className="form-select w-50 p-3" name="ciudadRestaurante" onChange={handleCiudadChange} value={ciudad}>
                 <option value="Avila">Avila</option>
                 <option value="Burgos">Burgos</option>
                 <option value="Leon">Leon</option>
@@ -96,10 +98,10 @@ function EditarRestaurante() {
             </select>
 
             <br />
-
+        </div>
             { errorMessage !== null && <p> {errorMessage} </p> }
 
-            <button type='submit'> Guardar </button>
+            <button type='submit' className='btn btn-success'> Guardar </button>
         </form>
     
     </div>

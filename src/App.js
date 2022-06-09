@@ -11,6 +11,8 @@ import AddRestaurante from "./pages/AddRestaurante";
 import EditarRestaurante from "./pages/EditarRestaurante";
 import NotFound from "./pages/NotFound";
 import IsAdmin from "./components/IsAdmin";
+import Profile from "./pages/Profile";
+import IsUser from "./components/IsUser";
 
 function App() {
   return (
@@ -21,11 +23,13 @@ function App() {
         <Route path="/" element={<Ciudades />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/ciudades" element={<Ciudades />} />
+
+        <Route path="/profile" element={ <IsUser> <Profile /> </IsUser> } />
+
         <Route path="/restaurantes/:ciudad" element={<Restaurantes />} />
         <Route path="/restaurantes/:id/details" element={<RestauranteDetails />} />
         <Route path="/restaurantes/add-restaurante" element={ <IsAdmin> <AddRestaurante /> </IsAdmin>} />
-        <Route path="/restaurantes/:id/edit" element={<EditarRestaurante />} />
+        <Route path="/restaurantes/:id/edit" element={ <IsAdmin> <EditarRestaurante /> </IsAdmin> } />
 
 
         <Route path="/error" element={<Error />} />

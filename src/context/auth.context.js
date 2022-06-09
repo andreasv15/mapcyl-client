@@ -15,15 +15,15 @@ function AuthWrapper(props) {
        setIsLoading(true);
        try {
            const response = await verifyService();
-           console.log("AuthWrapper: token valido");
-           console.log("AuthWrapper: el payload es: ", response.data);
+        //    console.log("AuthWrapper: token valido");
+        //    console.log("AuthWrapper: el payload es: ", response.data);
            setIsLoggedIn(true);
            setUser(response.data);
            setIsLoading(false);
            setUserAdmin(false);
            if (response.data.isAdmin === true) {
                 setUserAdmin(true);
-                console.log("Es admin")
+                // console.log("Es admin")
             } 
         } catch (error) {
            console.log("AuthWrapper: El usuario no tiene token o el token no es valido")

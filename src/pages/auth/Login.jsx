@@ -40,7 +40,7 @@ function Login() {
       localStorage.setItem("authToken", response.data.authToken);
       authenticateUser();
       
-      navigate("/ciudades")
+      navigate("/profile")
 
 
 
@@ -57,18 +57,18 @@ function Login() {
   return (
     <div>
         <h1> Login </h1>
+          <form onSubmit={handleLogin} className="mb-3">
+          <div className='d-flex flex-column align-items-center'>
+              <input type='text' name='username' className="form-control w-50 p-3" placeholder='Escribe tu nombre de usuario o correo' style={{ textAlign: "center"}} value={identificador} onChange={handleIdentifChange} />
+              <br />
+              <input type='password' name='password' className="form-control w-50 p-3" placeholder='Escribe tu contraseña' style={{ textAlign: "center"}} value={password} onChange={handlePasswordChange} />
+          </div>
+          <br />
 
-        <form onSubmit={handleLogin}>
-            <input type='text' name='username' placeholder='Escribe tu nombre de usuario o correo' value={identificador} onChange={handleIdentifChange} />
-            <br />
-            <input type='password' name='password' placeholder='Escribe tu contraseña' value={password} onChange={handlePasswordChange} />
-            <br />
+                { errorMessage !== null && <p> {errorMessage} </p> }
 
-            { errorMessage !== null && <p> {errorMessage} </p> }
-
-            <button type='submit'> Acceder </button>
-        </form>
-
+                <button type='submit' className='btn btn-success'> Acceder </button>
+            </form>
     </div>
   )
 }

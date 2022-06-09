@@ -49,7 +49,7 @@ function AddRestaurante() {
       await addRestauranteService(nuevoRestaurante);
       //console.log(response);
       //console.log("hecho")
-      navigate("/ciudades")
+      navigate("/")
 
     } catch (error) {
       navigate("/error")
@@ -64,12 +64,13 @@ function AddRestaurante() {
         <h1> Añadir restaurante </h1>
 
         <form onSubmit={handleSubmit}>
-            <input type='text' name='nombreRestaurante' placeholder='Escribe el nombre del restaurante' onChange={handleNombreChange} value={nombreRestaurante} />
-            <br />
-            <input type='text' name='direccionRestaurante' placeholder='Escribe la direccion del restaurante' onChange={handleDireccionChange} value={direccionRestaurante} />
-            <br />
+        <div className='d-flex flex-column align-items-center'>
 
-            <select name="ciudadRestaurante" onChange={handleCiudadChange} value={ciudadRestaurante}>
+            <input type='text' className="form-control w-50 p-3" name='nombreRestaurante' placeholder='Escribe el nombre del restaurante' onChange={handleNombreChange} value={nombreRestaurante} />
+            <br />
+            <input type='text' className="form-control w-50 p-3" name='direccionRestaurante' placeholder='Escribe la direccion del restaurante' onChange={handleDireccionChange} value={direccionRestaurante} />
+            <br />
+            <select className="form-select w-50 p-3" name="ciudadRestaurante" onChange={handleCiudadChange} value={ciudadRestaurante}>
                 <option value="Avila">Avila</option>
                 <option value="Burgos">Burgos</option>
                 <option value="Leon">Leon</option>
@@ -82,8 +83,9 @@ function AddRestaurante() {
             </select>
 
             <br />
+            </div>
 
-            <button type='submit'> Añadir </button>
+            <button type='submit' className='btn btn-success'> Añadir </button>
         </form>
     
     </div>

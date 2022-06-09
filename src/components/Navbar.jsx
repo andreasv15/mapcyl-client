@@ -1,55 +1,94 @@
 import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/auth.context'
 
 function Navbar() {
 
   const { isLoggedIn, user, authenticateUser, userAdmin } = useContext(AuthContext);
 
+  const navigate = useNavigate();
   // console.log(isLoggedIn);
   // console.log(user);
   // console.log(userAdmin)
-  // const handleLogout = () => {
-  //   localStorage.removeItem("authToken")
-  //   authenticateUser();
-  // }
+  const handleLogout = () => {
+    localStorage.removeItem("authToken")
+    authenticateUser();
+    navigate("/")
+  }
 
   return (
     <div>
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-              <NavLink className="nav-link active" to="/">Ciudades</NavLink>
-            </li>
-          <li class="nav-item">
-            <NavLink className="nav-link active" to="/signup" end={true}>Registro</NavLink>
-          </li>
-          <li class="nav-item">
-            <NavLink className="nav-link active" to="/login" end={true}>Acceder</NavLink>
-          </li>
-          <li class="nav-item">
-            <NavLink className="nav-link active" to="/restaurantes/add-restaurante" end={true}>Añadir restaurante </NavLink>
-          </li>
-          </ul>
-        </div>
-        { user !== null && <p> Bienvenido: {user.nombre} </p> }
+    { userAdmin === true && (
+        <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{backgroundColor: "yellow"}}>
+          <div className="container-fluid">
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                  <NavLink className="nav-link active" to="/">Ciudades</NavLink>
+                </li>
+                <li class="nav-item">
+                  <NavLink className="nav-link active" to="/restaurantes/add-restaurante" end={true}>Añadir restaurante </NavLink>
+                </li>
+                <li class="nav-item">
+                  <NavLink className="nav-link active" to="/profile">Mi perfil</NavLink>
+                </li>
 
-      </div>
-    </nav>
-
-        {/* <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-              <NavLink to="/">Ciudades</NavLink>
-              <NavLink to="/signup" end={true}>Registro</NavLink>
-              <NavLink to="/login" end={true}>Acceder</NavLink>
-              
-              <NavLink to="/restaurantes/add-restaurante" end={true}>Añadir restaurante </NavLink>
-
+              </ul>
+              {/* { user !== null && <p> Bienvenid@: {user.nombre} </p> } */}
+              <button onClick={handleLogout} className="btn btn-danger"> Cerrar sesión </button>
+            </div>
           </div>
-        </nav> */}
+        </nav>
+      )
+    }
+
+    {
+      (isLoggedIn === true && userAdmin === false) && (
+        <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{backgroundColor: "yellow"}}>
+          <div className="container-fluid">
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <NavLink className="nav-link active" to="/">Ciudades</NavLink>
+                </li>
+                <li class="nav-item">
+                  <NavLink className="nav-link active" to="/profile">Mi perfil</NavLink>
+                </li>
+
+                {/* { user !== null && (<p> Bienvenid@: {user.nombre} </p>) }  */}
+
+              </ul>
+              <button onClick={handleLogout} className="btn btn-danger"> Cerrar sesión </button>
+            </div>
+          </div>
+        </nav>
+      )
+    }
+
+    {
+      isLoggedIn === false && (
+        <nav className="navbar navbar-expand-lg navbar-light bg-light" >
+        <div className="container-fluid">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <NavLink className="nav-link active" to="/">Ciudades</NavLink>
+              </li>
+              <li className="nav-item">
+               <NavLink className="nav-link active" to="/signup" end={true}>Registro</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link active" to="/login" end={true}>Acceder</NavLink>
+              </li>
+            </ul>
+            </div>
+        </div>
+      </nav>
+
+      )
+    }
+
     </div>
   )
 }

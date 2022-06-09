@@ -15,7 +15,7 @@ function IsAdmin(props) {
     } else {
         //console.log("no: ", props.children)
 
-        return <Navigate to="/ciudades" />
+        return <Navigate to="/" />
     }
 
 

@@ -21,6 +21,13 @@ const editRestauranteService = (id, restaurante) => {
     return service.patch(`/restaurantes/${id}`, restaurante)
 }
 
+// const RestauranteVisitadoService = () => {
+//     return service.patch()
+// }
+// const RestaurantePendienteService = () => {
+    
+// }
+
 export {
     getAllRestaurantesService,
     addRestauranteService,

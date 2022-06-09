@@ -26,20 +26,20 @@ function Restaurantes() {
 
 
   return (
-    <div >
-        <h1 style={{'marginTop': '15px', 'marginBottom': '25px'}}> Listado de todas las ciudades </h1>
+    <div style={{'paddingTop': '15px', 'paddingBottom': '25px'}}>
+        <h1 style={{'marginTop': '15px', 'marginBottom': '25px'}}>  </h1>
 
         { todasCiudades === null && <h3> ... Loading </h3>}
         <div className="d-flex flex-wrap gap-4 justify-content-around">
         {
             todasCiudades !== null && todasCiudades.map((cadaCiudad) => {
           return (
-            <div className="p-3 card" style={{width: 500 + 'px'}} key={cadaCiudad._id}>
+            <div className="p-3 card" style={{width: 500 + 'px', backgroundColor: "#F2EDDB"}} key={cadaCiudad._id}>
                 <h3 className="card-title"> {cadaCiudad.nombre} </h3> 
                 <img className="card-img-top" src={cadaCiudad.imagen} alt="imagen" style={{'maxWidth': '600px', 'maxHeight': '250px'}}  />
                 <br />
                 <p className="card-subtitle mb-2 text-muted"> {cadaCiudad.habitantes} habitantes </p>
-                <Link to={`/restaurantes/${cadaCiudad.nombre}/`} style={{ textDecoration: 'none', color: 'black' }}> <button className="btn btn-info"> <img width="50px" src="https://cdn-icons-png.flaticon.com/512/1996/1996055.png" alt="img" /> </button> </Link>
+                <Link to={`/restaurantes/${cadaCiudad.nombre}/`} style={{ textDecoration: 'none', color: 'black' }}> <button className="btn btn-outline-success" > <img width="50px" src="https://cdn-icons-png.flaticon.com/512/1996/1996055.png" alt="img" /> </button> </Link>
             </div>
           )
         })
