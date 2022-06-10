@@ -12,7 +12,8 @@ function Ciudades() {
 
     const getCiudades = async () => {
         try {
-            const response = await axios.get("http://localhost:5005/api/ciudades");
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/ciudades`);
+            // ! cambiar a Servicio
             setTodasCiudades(response.data)
 
         } catch (error) {
